@@ -28,91 +28,92 @@
 
 ```python
 Class _ListNode(object):
-  def __init__(self, value):
-    self.val = value 
-    self.next = None 
+    def __init__(self, value):
+      self.val = value 
+      self.next = None 
 Class LinkedList(object):
-  def __init__(self):
-    # initialize data structure 
-    self._head = None 
-    self._tail = None 
-    self._size = 0
-  # search
-  def get(self, index):
+    def __init__(self):
+      # initialize data structure 
+      self._head = None 
+      self._tail = None 
+      self._size = 0
+    # search
+    
+    def get(self, index):
     """Get the value of the index-th node in the linkedlist. If the index is invalid, return -1"""
-    if self._head is None or index < 0:
-      return -1
-    return self._get(index).val 
+      if self._head is None or index < 0:
+          return -1
+      return self._get(index).val 
 
-  def _get(self,index):
-      node = self._head
-       For _ in range(index): # 移动index补偿
-      node = node.next # 遍历去找
-    return node #返回index
+    def _get(self,index):
+        node = self._head
+        for _ in range(index): # 移动index补偿
+            node = node.next # 遍历去找
+        return node #返回index
 
-  def add_atHead(self, val):
+    def add_atHead(self, val):
     """Add a node value before the first element of the linkedlist """
-    new_head = _ListNode(val) # 建个新node
-    if self._size == 0:
-      self._head = self._tail = new_head
-    else:
-      new_head.next = self._head # 新node指向当前头结点
-      self._head = new_head # 头结点更新
-    self._size+=1
+        new_head = _ListNode(val) # 建个新node
+        if self._size == 0:
+            self._head = self._tail = new_head
+        else:
+            new_head.next = self._head # 新node指向当前头结点
+            self._head = new_head # 头结点更新
+        self._size+=1
 
-  def add_atTail(self, val):
+    def add_atTail(self, val):
     """Append a node value to the last element of the linkedlist"""
-    new_node = _ListNode(val)
-    if self._size == 0: # corner case 
-      self._head = self._tail = new_node
-    else:
-      self._tail.next = new_node # tail next link to new node
-      self._tail = self._tail.next # self.tail point to next 
-    self._size += 1
+        new_node = _ListNode(val)
+        if self._size == 0: # corner case 
+            self._head = self._tail = new_node
+        else:
+            self._tail.next = new_node # tail next link to new node
+            self._tail = self._tail.next # self.tail point to next 
+        self._size += 1
 
-  def add_atIndex(self,index, val):
+    def add_atIndex(self,index, val):
     """Add a node value before the index-th node in the linkedlist"""
     ### 3 cases 
-    # corner case
-    if not index or index < 0 or index > self._size:
-      return
-    # add at head
-    if index == 0:
-      self.add_atHead(val)
-    # add at tail 
-    elif index == self._size:
-      self.add_atTail(val)
-    else:
-      node = self.get(index-1) # fint its previous node
-      new_node = _ListNode(val)
-      new_node.next = node.next
-      node.next = new_node
-      self._size+= 1
+        # corner case
+        if not index or index < 0 or index > self._size:
+            return
+        # add at head
+        if index == 0:
+            self.add_atHead(val)
+        # add at tail 
+        elif index == self._size:
+            self.add_atTail(val)
+        else:
+          node = self.get(index-1) # fint its previous node
+          new_node = _ListNode(val)
+          new_node.next = node.next
+          node.next = new_node
+          self._size+= 1
 
-  def delete_atIndex(self,index):
+    def delete_atIndex(self,index):
     """
     delete the index-th node in the linkedlist, if the index is valid.
     """
-    if not index or index < 0 or index > self._size:
-      return 
-    # delete head
-    if index ==0:
-      new_head = self._head.next 
-      self._head.next = None # 这一步可以不写
-      self._head = new_head
-      if not self._head:
-        self._tail = None # 
-    # delete other and tail 
-    else:
-      # find the node before tail 
-      node = self.get(self._size - 1)
-      remove_node = node.next 
-      node.next = remove_nod.next 
-      remove_node.next = None # 可以不写
-      # what if remove the tail?
-      if index == self._size -1:
-        self._tail = node # 直接把tail换成node
-    self._size -= 1
+        if not index or index < 0 or index > self._size:
+            return 
+        # delete head
+        if index ==0:
+            new_head = self._head.next 
+            self._head.next = None # 这一步可以不写
+            self._head = new_head
+            if not self._head:
+                self._tail = None # 
+        # delete other and tail 
+        else:
+          # find the node before index 
+              node = self.get(index - 1)
+              remove_node = node.next 
+              node.next = remove_node.next 
+              remove_node.next = None # 可以不写
+          # what if remove the tail?
+              if index == self._size -1:
+                  self._tail = node # 直接把tail换成node
+        self._size -= 1
 ```
 
 * 双向链表
