@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Leetcode](README.md)
+* [Sorting](sorting.md)
 * [Linked List](untitled.md)
 * [Database](database.md)
 * [Hash Map](data-structure.md)
