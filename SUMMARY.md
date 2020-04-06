@@ -11,4 +11,5 @@
 * [BFS](bfs.md)
 * [Trie](trie.md)
 * [String](string.md)
+* [Stack and Queue](stack-and-queue.md)
 
