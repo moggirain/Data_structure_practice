@@ -10,4 +10,5 @@
 * [BST](bst.md)
 * [BFS](bfs.md)
 * [Trie](trie.md)
+* [String](string.md)
 
