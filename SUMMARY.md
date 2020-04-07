@@ -12,4 +12,5 @@
 * [Trie](trie.md)
 * [String](string.md)
 * [Stack and Queue](stack-and-queue.md)
+* [Dynamic Programing \(DP\)](dynamic-programing-dp.md)
 
