@@ -1,9 +1,15 @@
-# Sorting2
+# Sorting
 
 * **Definition:** Rearrange a sequence of objects into logic order. 
 * **Logic order:** the key for arrangement \(usually numerical / alphabetical order\)
 * **Three concerns:** Algorithm performance \(see below\), memory\(in-place or extra space\), data type. 
-* 
+
+### Property
+
+* **Stability:** Equal keys aren’t reordered. For example, a = 3, b = 3, a is before b and after sorting, the order still maintain. 
+* **In place operation:** All operation happens in the memory, requiring O\(1\) extra space.
+* **Adaptivity:** Speeds up to O\(n\) when data is nearly sorted or when there are few unique keys.
+
 ![A tour of the top 5 sorting algorithms with Python code](https://miro.medium.com/max/596/1*ipkeWQ_Lb0lbkhB8rigxTA.png)
 
 * **Important algorithms:**
