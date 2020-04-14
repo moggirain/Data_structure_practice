@@ -35,5 +35,3 @@ def selection_sort(nums):
     
 ```
 
-
-
