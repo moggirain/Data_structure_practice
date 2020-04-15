@@ -58,5 +58,43 @@ def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None
 
 ![Method 3: end to front pointer i = p1, j = p2, p = p](.gitbook/assets/image.png)
 
+**Problem: Find smallest k items in an unsorted array**
 
+Find smallest k elements from an unsorted array of size n. The output should be in ascending order.
+
+```python
+# Solution 1: Minheap
+# heapify all elements  O(n)
+# call pop() k times to get k smallest items (klogn)
+# TC: O(n + klogn) SC: O(k)
+import heapq
+def kSmallest(array, k):
+		if not array:
+      return[]
+    heapq.heapify(array)
+    res = []
+    for i in range(min(len(array), k)):
+      	res.append(heapq.heappop(array))
+    return res
+```
+
+```python
+# Solution 2: Maxheap
+# 1,5,3,4,6,2 k = 3    1 2 3    
+#     -5      [4, 6, 2]    pop: -5, -4, -6     -3
+#  -1   -3                                  -1    -2
+# heapify the first k items in a maxheap with size = k  O(k)
+# iterate the rest n-k items and update the top of the heap O((n-k)logk)
+# item > top, ignore, else: add into the heap and update 
+# TC: O(k + (n-k)logk) SC: O(k)
+  
+def Ksmallest(array, k):
+  	if not array:
+      return []     
+    res = [-i for i in array[:k]] # maxheap 
+    heapq.heapify(res) 
+    for i in range(k, len(array)):
+      	heapq.heappushpop(res, -array[i]) # pop k largest number
+   	return sorted([-i for i in res]) # klogk  
+```
 
