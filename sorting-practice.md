@@ -1,7 +1,7 @@
 # Sorting Practice
 
 1. Classical sorting 
-2. Merge Sort 
+2. Merge Sort   88, 21
 3. Different sorting 
 4. Heap 
 
@@ -61,7 +61,19 @@ def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None
 
 ![Method 3: end to front pointer i = p1, j = p2, p = p](.gitbook/assets/image.png)
 
-\*\*\*\*
+**Leetcode  21 Merge Two Sorted Lists**
+
+{% embed url="https://leetcode-cn.com/problems/merge-two-sorted-lists/" %}
+
+```python
+
+```
+
+#### 
+
+#### 
+
+#### 
 
 #### 
 
