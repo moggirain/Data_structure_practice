@@ -82,7 +82,7 @@ def bubble_sort(alist):
 
 ## Insertion Sort
 
-* **Description:** Insertion assumps the sullist of items is already sorted in the lower positions of the list. Each new items in inserted back into the previous sublist, and shift the item that are greater to the right, until find the correct position to insert. 
+* **Description:** Insertion assumes the sublist of items is already sorted in the lower positions of the list. Each new item is inserted back into the previous sublist, and shift the item that are greater to the right, until find the correct position to insert. 
 * **Analogy:** Consider playing cards, insert each card into its proper place among those already considered \(keeping them sorted\). 
 * The running time depended on the initial order of the items. 
 * Insertion sort is an excellent method for partially sorted arrays and is also a fine method for tiny arrays.
@@ -128,10 +128,10 @@ if __name__ == "__main__":
 
 ​
 
-## Seleciton Sort
+## Selection Sort
 
 * **Description:** Assume the sublist is sorted, and the remaining sublist is unsorted. Repeatedly traverse the array and find the the minimum element from unsorted array and put it at the beginning \(verse versa, find the maximum and put it at the end\), until the list is fully sorted. 
-* Selection sort uses **$ N \* \(N-1\) / 2 = N^{2}/2 $**    compares and _N_ exchanges to sort an array of length _N_.
+* Selection sort uses $ N \* \(N-1\) / 2 = N^{2}/2 $ compares and _N_ exchanges to sort an array of length _N_.
 
 ### Algorithm Implementation
 
@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
 ![../\_images/selectionsortnew.png](https://runestone.academy/runestone/books/published/pythonds/_images/selectionsortnew.png)
 
-![img](https://miro.medium.com/proxy/1*OA7a3OGWmGMRJQmwkGIwAw.gif)
+![selection sort](https://miro.medium.com/proxy/1*OA7a3OGWmGMRJQmwkGIwAw.gif)
 
 ```python
 def selection_sort(array):
@@ -175,13 +175,13 @@ if __name__ == "__main__":
 ```python
 def MergeSort(array):
 
-      if len(array) <=1: # base case 
-          return array
+    if len(array) <=1: # base case 
+        return array
     mid = len(array)//2 # divide 
     a = MergeSort(array[:mid])
     b = MergeSort(array[mid:])
 
-      def merge(a,b): # merge
+    def merge(a,b): # merge
         i = j = 0 
         res = []
         while i < len(a) and j < len(b):
@@ -208,7 +208,7 @@ if __name__ == "__main__":
     print(sort_list)
 ```
 
-* **Bottom-up merge sort** : handles the situation where most arrays are small subarrays. When merge the array, it starts with the signle lement array, and the 2-by-2 adjacent pairs, and then 4-by-4 arrays.
+* **Bottom-up merge sort** : handles the situation where most arrays are small subarrays. When merge the array, it starts with the single element array, and the 2-by-2 adjacent pairs, and then 4-by-4 arrays.
 
   **Compare two merge processes: Top-down**
 
@@ -228,8 +228,8 @@ def mergeSort(self, array):
     n = len(array)
     array = [[x] for x in array]
     while n > 1:
-      array = self.merge_sort(array)
-      return array[0]
+        array = self.merge_sort(array)
+        return array[0]
 
 def merge_sort(self, array):
     res = []
@@ -280,7 +280,7 @@ Source: [https://gist.github.com/etrepum/6689110](https://gist.github.com/etrepu
 ![img](https://miro.medium.com/proxy/1*hk2TL8m8Kn1TVvewAbAclQ.gif)
 
 ```python
-# version 1: pick the fist item
+# version 1: pick the first item
 def quickSort(array):
     n = len(array)
     if n<=1: 

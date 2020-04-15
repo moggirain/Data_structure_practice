@@ -119,3 +119,63 @@ class Solution:
         return False 
 ```
 
+### **Problem- Find the second largest item in a BST**
+
+Find the second largest value inside a binary search tree. You can assume that a node inside this tree only contains a single value. 
+
+```python
+# with right sub tree, the 2nd largest is the root
+# without right sub tree, the 2nd largest is the max of left tree
+# TC: O(h) SC: O(1)
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None 
+        self.right = None 
+
+class Solution: 
+    def FindSecondLargest(self, root):
+        self.cnt = 0 
+        self.res = None 
+        self.dfs(root)
+        return self.res if self.res else None
+		
+    def dfs(self, root):
+      	if not root: # base case 
+          	return
+        self.dfs(root.right)
+        self.cnt+=1
+        if self.cnt == 2:
+          	self.res = root.val 
+            print("the second largest element is", root.val)
+            return 
+        if self.cnt > 2:
+          	return 
+       	self.dfs(root.left)
+   
+  	def insert(self, root, val):
+      	if not root:
+        		return TreeNode(val)
+        if val < root.val:
+          	root.left = self.insert(root.left, val)
+        elif val > root.val:
+          	root.right = self.insert(root.right, val)
+        return root
+      
+if __name__ == '__main__': 
+      
+    # Let us create following BST  
+    #         10  
+    #       /     \  
+    #       5     20  
+    #               \  
+    #      					 30
+    root = None
+    root = insert(root, 10)  
+    insert(root, 5) 
+    insert(root, 20)  
+    insert(root, 30)  
+    s = Solution()
+    s.FindSecondLargest(root)
+```
+
