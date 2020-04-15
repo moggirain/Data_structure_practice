@@ -3,6 +3,9 @@
 1. Classical sorting 
 2. Merge Sort 
 3. Different sorting 
+4. Heap 
+
+## **Merge Sort** 
 
 **Leetcode 88 Merge Sorted Array** 
 
@@ -57,6 +60,12 @@ def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None
 ```
 
 ![Method 3: end to front pointer i = p1, j = p2, p = p](.gitbook/assets/image.png)
+
+\*\*\*\*
+
+#### 
+
+## **Heap** 
 
 **Problem: Find smallest k items in an unsorted array**
 
