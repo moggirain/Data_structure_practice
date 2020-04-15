@@ -13,4 +13,5 @@
 * [String](string.md)
 * [Stack and Queue](stack-and-queue.md)
 * [Dynamic Programing \(DP\)](dynamic-programing-dp.md)
+* [Sorting Practice](sorting-practice.md)
 
