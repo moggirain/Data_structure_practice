@@ -58,3 +58,5 @@ def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None
 
 ![Method 3: end to front pointer i = p1, j = p2, p = p](.gitbook/assets/image.png)
 
+
+
