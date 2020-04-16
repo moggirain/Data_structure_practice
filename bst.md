@@ -149,7 +149,7 @@ class Solution:
           	self.res = root.val 
             print("the second largest element is", root.val)
             return 
-        if self.cnt > 2:
+        if self.cnt > 2: # prunning
           	return 
        	self.dfs(root.left)
    
@@ -162,20 +162,27 @@ class Solution:
           	root.right = self.insert(root.right, val)
         return root
       
+
 if __name__ == '__main__': 
-      
     # Let us create following BST  
     #         10  
     #       /     \  
     #       5     20  
-    #               \  
-    #      					 30
+    #    /   \       \  
+    #   3     8   11    30
+    #  / 
+    # 2
     root = None
-    root = insert(root, 10)  
-    insert(root, 5) 
-    insert(root, 20)  
-    insert(root, 30)  
     s = Solution()
+    root = s.insert(root, 10)  
+    s.insert(root, 5) 
+    s.insert(root, 3)
+    s.insert(root, 8)
+    s.insert(root, 2)
+    s.insert(root, 20)  
+    s.insert(root, 30)  
+    s.insert(root, 40)  
+    s.insert(root, 50)  
     s.FindSecondLargest(root)
 ```
 

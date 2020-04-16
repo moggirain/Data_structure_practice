@@ -66,7 +66,62 @@ def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None
 {% embed url="https://leetcode-cn.com/problems/merge-two-sorted-lists/" %}
 
 ```python
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
+# solution 1: iteration 
+# TC: O(m + n) SC: O(1)
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummy = ListNode(None) # track the link 
+        cur = dummy
+        while l1 and l2:
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next 
+            else:
+                cur.next = l2
+                l2 = l2.next 
+            cur = cur.next 
+        
+        cur.next = l1 or l2
+        return dummy.next 
+    
+# solution 2: recursion 
+# TC: O(m + n) SC: O(m + n)
+    def mergeTwoLists_rec(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if not l1:
+            return l2
+        if not l2:
+            return l1
+        else:
+            if l1.val < l2.val:
+                l1.next = self.mergeTwoLists_rec(l1.next, l2)
+                return l1
+            else:
+                l2.next = self.mergeTwoLists_rec(l1, l2.next)
+                return l2
+
+    
+    def print_list(self, head):
+    
+        while head:
+            print(str(head.val) + "->", end = "")
+            head = head.next
+            
+if __name__== "__main__":
+    l1 = ListNode(1)
+    l1.next = ListNode(2)
+    l1.next.next = ListNode(4)
+    l2 = ListNode(1)
+    l2.next = ListNode(3)
+    l2.next.next = ListNode(4)
+   
+    s.print_list(s.mergeTwoLists(l1, l2))
+    #s.print_list(s.mergeTwoLists_rec(l1, l2))
 ```
 
 #### 
