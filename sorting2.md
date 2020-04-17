@@ -430,6 +430,82 @@ class Solution(object):
     self.quick_sort(array, pivot+1, right)
 ```
 
+```python
+# LinkedList implementation of quicksort
+class ListNode(object):
+  def __init__(self, x):
+    self.val = x
+    self.next = None
+class Solution(object):
+  def quickSort(self, head):
+    """
+    input: ListNode head
+    return: ListNode
+    """
+    # write your solution here
+    # empty 
+    if head is None:
+      return None 
+    # get the head
+    tail = self.get_tail(head)
+    # quick sort
+    head, tail = self.quick_sorted(head,tail)
+    # set tail point to None 
+    tail.next = None
+    return head
+
+  def quick_sorted(self,head, tail):
+    if head is not tail:
+      left_head, left_tail, head_ref, tail_ref, right_head, right_tail = self.quicksort_partition(head,tail)
+      if left_head is None:
+        head = head_ref
+      else:
+        left_head, left_tail = self.quick_sorted(left_head,left_tail)
+        head = left_head
+        left_tail.next = head_ref
+      if right_head is None:
+        tail = tail_ref
+      else:
+        right_head, right_tail = self.quick_sorted(right_head, right_tail)
+        tail_ref.next = right_head
+        tail = right_tail 
+    return head, tail 
+
+  def quicksort_partition(self,head, tail):
+    reference = tail
+    head_ref, tail_ref = reference, reference
+    left_head, left_tail, right_head, right_tail = None, None, None, None
+
+    dummy = ListNode(None)
+    dummy.next = head 
+    node = dummy
+
+    while node.next is not tail:
+      node = node.next 
+      if node.val > reference.val: # put node into right part
+        if right_head is not None:
+          right_tail.next = node
+          right_tail = node 
+        else: # right part is empty 
+          right_head = right_tail = node
+        
+      elif node.val < reference.val:
+        if left_head is not None:
+          left_tail.next = node
+          left_tail = node
+        else:
+          left_head = left_tail = node 
+      else: # equal insert into reference 
+        tail_ref.next = node
+        tail_ref = node 
+    return left_head, left_tail, head_ref, tail_ref, right_head, right_tail
+
+  def get_tail(self,node):
+    while node.next:
+      node = node.next
+    return node
+```
+
 ## Heap Sort
 
 #### Priority Queue
