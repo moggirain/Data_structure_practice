@@ -160,6 +160,47 @@ if __name__ == "__main__":
     print(l)
 ```
 
+```python
+# LinkedList implemnetation of Selection Sort 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+        
+class Solution(object):
+  def selectionSort(self, head):
+    """
+    input: ListNode head
+    return: ListNode
+    """
+    # summary 1) dummy head 2) unsorted and sorted connector-two set of pointers (sorting, find min)
+    # 3)traverse to find min 4) move the min out 
+
+    dummy_head = ListNode(None)
+    dummy_head. next = head
+    tail = dummy_head 
+
+    while tail.next:
+      # set two set of pointers
+      
+      prev, curr = tail, tail.next 
+      min_node, pre_min = curr, prev
+      # use cur to traverse
+      while curr:
+        if curr.val < min_node.val:
+          min_node, pre_min = curr, prev
+        # continue to traverse
+        prev, curr = curr, curr.next
+        # found min 
+        # delink min 
+      pre_min.next = min_node.next 
+      min_node.next = tail.next 
+      tail.next = min_node
+      tail = tail.next 
+
+    return dummy_head.next 
+```
+
 ## Merge Sort
 
 **Description:** Divide and conquer strategy, to sort an array, dide the into two halves recursively, and conquer: to merge the results and reach a combined sorted new list.
@@ -206,6 +247,60 @@ if __name__ == "__main__":
     nums = [6,9,4,8,9,3,5,2]
     sort_list = MergeSort(nums)
     print(sort_list)
+```
+
+```python
+# mergesort linkedlist implementation
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+### summary three steps: 
+## 1) recursion to merge sort 
+## 2) split in half 
+## 3) merge 
+# TC: O(m + n) SC: O(m+n)
+
+class Solution(object):
+  def mergeSort(self, head):
+    """
+    input: ListNode head
+    return: ListNode
+    """
+    # write your solution here
+    # corner case 
+    # one node left or None 
+      if not head or not head.next:
+          return head
+      one, two = self.splitInhalf(head)
+      one = self.mergeSort(one)
+      two = self.mergeSort(two)
+      return self.merge(one, two)
+
+  def splitInhalf(self, head):
+      slow, fast = head, head.next
+      while fast and fast.next:
+          slow = slow.next 
+          fast = fast.next.next
+      nxt = slow.next 
+      slow.next = None 
+      return head, nxt 
+  
+  def merge(self, one, two):
+      cur = ListNode(None)
+      dummy = cur 
+      while one and two:
+          if one.val < two.val:
+              cur.next = one
+              one = one.next
+          else:
+              cur.next = two 
+              two = two.next 
+          cur = cur.next 
+    
+      cur.next = one or two 
+      return dummy.next 
 ```
 
 * **Bottom-up merge sort** : handles the situation where most arrays are small subarrays. When merge the array, it starts with the single element array, and the 2-by-2 adjacent pairs, and then 4-by-4 arrays.
