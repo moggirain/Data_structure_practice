@@ -524,7 +524,7 @@ Priority Queue: The highest priority items are at the front of the queue and the
 | :--- | :--- | :--- |
 | 普通数组 | O\(1\) \(放末尾\) | O\(n\) 扫描查找 |
 | 顺序数组 | O\(n\)（查找合适插入顺序） | O\(1\) （优先级最高元素队头） |
-| 堆 | O\(lgn\) | O\(lgn\) |
+| 堆 | O\(logn\) | O\(logn\) |
 
 * Worse case scenario for 
   * Array and SortedArray: Avg O\(n^2\) 

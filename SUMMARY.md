@@ -16,3 +16,7 @@
 * [Dynamic Programing \(DP\)](dynamic-programing-dp.md)
 * [Two Pointers](two-pointers.md)
 
+## LeetCode Day Challenges
+
+* [Day1\_Challenge](leetcode-day-challenges/day1_challenge.md)
+
