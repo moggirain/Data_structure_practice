@@ -14,9 +14,11 @@
 * [String](string.md)
 * [Stack and Queue](stack-and-queue.md)
 * [Dynamic Programing \(DP\)](dynamic-programing-dp.md)
+* [Monotone Stack](monotone-stack.md)
 * [Two Pointers](two-pointers.md)
 
 ## LeetCode Day Challenges
 
+* [Day2\_Challenge](leetcode-day-challenges/day2_datachallenge.md)
 * [Day1\_Challenge](leetcode-day-challenges/day1_challenge.md)
 
