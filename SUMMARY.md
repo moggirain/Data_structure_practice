@@ -19,6 +19,11 @@
 
 ## LeetCode Day Challenges
 
+* [Day3\_Challenge](leetcode-day-challenges/day3_challenge.md)
 * [Day2\_Challenge](leetcode-day-challenges/day2_datachallenge.md)
 * [Day1\_Challenge](leetcode-day-challenges/day1_challenge.md)
+
+---
+
+* [Untitled](untitled-1.md)
 

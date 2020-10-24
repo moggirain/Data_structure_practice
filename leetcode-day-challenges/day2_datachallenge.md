@@ -1,3 +1,7 @@
+---
+description: Remove duplicates series
+---
+
 # Day2\_Challenge
 
 ### \*\*\*\*[**LEETCODE 26. Remove Duplicates from Sorted Array**](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)\*\*\*\*
@@ -29,7 +33,8 @@ class Solution:
 * Third thought: Think about comparing nums\[j\] with nums\[i-2\], because i keeps all the twice duplicate number
 
 ```python
-# Solution1: compare j with i-2th item 
+# Solution: compare j with i-2th item 
+# TC: O(n) SC: O(1)
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         # edge case 

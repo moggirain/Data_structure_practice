@@ -39,7 +39,7 @@ def two_sum_duplicated(arr, target):
             dic[val] = {key}
 ```
 
-### **653. Two Sum IV - Input is a BST**
+### **LeetCode 653. Two Sum IV - Input is a BST**
 
 {% page-ref page="two-pointers.md" %}
 

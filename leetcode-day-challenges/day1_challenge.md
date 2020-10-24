@@ -1,5 +1,5 @@
 ---
-description: Binary Search and Sorting Problem
+description: Majority Element Series
 ---
 
 # Day1\_Challenge
