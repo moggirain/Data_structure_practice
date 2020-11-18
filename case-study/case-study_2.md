@@ -1,3 +1,7 @@
+---
+description: User behaviour
+---
+
 # Device User Discrepancy
 
 {% page-ref page="case-study\_2.md" %}
