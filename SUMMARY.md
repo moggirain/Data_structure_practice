@@ -30,5 +30,6 @@
 
 ## Case Study
 
+* [Case Study\_2](case-study/case-study_2.md)
 * [FB Case Study](case-study/fb-case-study.md)
 
