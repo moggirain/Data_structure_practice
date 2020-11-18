@@ -31,6 +31,6 @@
 ## Case Study
 
 * [Product\_Feature\_Idea](case-study/product_feature_idea.md)
-* [Case Study\_2](case-study/case-study_2.md)
+* [Device User Discrepancy](case-study/case-study_2.md)
 * [FB Case Study](case-study/fb-case-study.md)
 
