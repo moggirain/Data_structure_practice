@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Leetcode](README.md)
+* [Array](array.md)
 * [Sorting](sorting2.md)
 * [Sorting Practice](sorting-practice.md)
 * [Linked List](untitled.md)
