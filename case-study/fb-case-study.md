@@ -8,6 +8,7 @@
 
 
 
-[**How many high schools that people have listed on their profiles are real? How do we find out, and deploy**](https://www.glassdoor.com/Interview/How-many-high-schools-that-people-have-listed-on-their-profiles-are-real-How-do-we-find-out-and-deploy-at-scale-a-way-of-QTN_1975760.htm)  
+### Case 3: **How many high schools that people have listed on their profiles are real? How do we find out, and deploy at scale, a way of finding invalid schools?**
+
 
 
