@@ -1,14 +1,6 @@
 # Invalid High School
 
-### **Case 1:**  If 70% of Facebook users on iOS use Instagram, but only 35% of Facebook users on Android use Instagram, how would you investigate the discrepancy? 
-
-
-
-### \*\*\*\*
-
-
-
-### Case 3: **How many high schools that people have listed on their profiles are real? How do we find out, and deploy at scale, a way of finding invalid schools?**
+###  **How many high schools that people have listed on their profiles are real? How do we find out, and deploy at scale, a way of finding invalid schools?**
 
 * **Question: translate to if people list fake high schools**
   * If yes, what is the purpose of listing the fake high schools?
@@ -44,4 +36,6 @@
     * No → Solution 2, 3, 4 
   * Solution2, Solution3, Solution 4 can output probability and add the weight for decision making for a linear regression model 
   * Further, Solution2, 3, 4 output could be utilized as features, once having sufficient training data, build a classification model to predict what kind of account pattern will have fake high school names. 
+
+
 
