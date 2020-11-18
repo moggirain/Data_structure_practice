@@ -30,7 +30,7 @@
 
 ## Case Study
 
-* [Untitled](case-study/untitled.md)
+* [Double Ads](case-study/untitled.md)
 * [Product\_Feature\_Idea](case-study/product_feature_idea.md)
 * [Device User Discrepancy](case-study/case-study_2.md)
 * [Invalid High School](case-study/fb-case-study.md)
