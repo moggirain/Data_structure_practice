@@ -30,6 +30,7 @@
 
 ## Case Study
 
+* [Different User behaviour](case-study/different-user-behaviour.md)
 * [Map NickName](case-study/map-nickname.md)
 * [Likes Increase](case-study/likes-increase.md)
 * [Double Ads](case-study/untitled.md)
