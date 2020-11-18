@@ -31,6 +31,7 @@
 ## Case Study
 
 * [Map NickName](case-study/map-nickname.md)
+* [Likes Increase](case-study/likes-increase.md)
 * [Double Ads](case-study/untitled.md)
 * [Product\_Feature\_Idea](case-study/product_feature_idea.md)
 * [Device User Discrepancy](case-study/case-study_2.md)
