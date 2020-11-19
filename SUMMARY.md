@@ -39,3 +39,7 @@
 
 * [Advanced SQL Problems](sql/advanced-sql-problems.md)
 
+## Stats and Probability
+
+* [Probability](stats-and-probability/probability.md)
+

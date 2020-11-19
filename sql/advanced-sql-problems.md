@@ -31,9 +31,85 @@ Write a query that gets the number of retained users per month. In this case, re
 Now we’ll take retention and turn it on its head: Write a query to find many users last month did not come back this month. i.e. the number of churned users.  
 
 
-  
+## Friendship Cycle 
 
+## 
 
-  
+## Transaction 
 
+```text
+1.交易表结构为user_id,order_id,pay_time,order_amount
+写sql查询过去一个月付款用户量（提示 用户量需去重）最高的3天分别是哪几天
+写sql查询做昨天每个用户最后付款的订单ID及金额
+2.PV表a(表结构为user_id,goods_id),点击表b(user_id,goods_id),数据量各为50万？条，在防止数据倾斜的情况下，写一句sql找出两个表共同的user_id和相应的goods_id
+3.表结构为user_id,reg_time,age, 写一句sql按user_id尾数随机抽样2000个用户  写一句sql取出按各年龄段（每10岁一个分段，如（0,10））分别抽样1%的用户
+4.用户登录日志表为user_id,log_id,session_id,plat 用sql查询近30天每天平均登录用户数量  用sql查询出近30天连续访问7天以上的用户数量
+5.表user_id,visit_date,page_name,plat  统计近7天每天到访的新用户数 统计每个访问渠道plat7天前的新用户的3日留存率和7日留存率
+```
+
+## Rolling Average 
+
+##  Follower and followed 
+
+**The schema: A table listing all the sport players' accounts of interest. 2nd table listing all of Instagram's users' basic information. 3rd table that logged all follows among accounts. \(Follower\_id and target\_id are both referring user\_id\).**
+
+Table 1: Sport\_accounts
+
+```text
+Table: Sport_Account 
+User_name | Sport_category 
+--------------------------
+| michael |  NBA         |
+| Peyton  |  NFL         |
+
+Table: Dim_all_users
+User_id  | User_name | Registration_date | Active_last_month| 
+-------------------------------------------------------------
+|    2   |   Kylin   |       2018-08-01   |          1        |
+|    3   |   steven  |       2019-04-12   |          1        |
+
+Table:Follow_relations
+follower_id | target_id | Following_date(string)  |  
+-------------------------------------------
+|    2      |   224        |   2018-09-01   |    
+|    3      |   122        |   2020-02-23   | 
+```
+
+**Q1. How many total users follow sport accounts?**
+
+```sql
+# output: total follower count 
+# join three tables (why inner join bottom - top)
+
+# |user_id| sport_user_name | cnt_follower
+
+SELECT COUNT(DISTINCT f.follower_id) AS cnt_followers
+FROM Sport_Account s 
+JOIN Dim_all_users d 
+ON s.User_name = d.user_name 
+JOIN Follow_rations f 
+ON d.User_id = f.target_id;  
+```
+
+#### Q2.  How many ACTIVE users follow each type of sport?
+
+```sql
+# output: Sport_category | cnt_active_follower
+# four tables
+# above table find sport account followers 
+# need to find follower's activeness in user table
+
+SELECT Sport_category,
+       COUNT(DISTINCT f.follower_id) as cnt_followers
+FROM Sport_Account s 
+JOIN Dim_all_users d 
+ON s.User_name = d.user_name 
+JOIN Follow_rations f 
+ON d.User_id = f.target_id
+JOIN Dim_all_users d2 
+ON d2.User_id = f. follower_id
+
+WHERE Active_last_month = 1
+GROUP BY 1; 
+```
 
