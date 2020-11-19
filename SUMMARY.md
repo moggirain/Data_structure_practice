@@ -24,10 +24,6 @@
 * [Day2\_Challenge](leetcode-day-challenges/day2_datachallenge.md)
 * [Day1\_Challenge](leetcode-day-challenges/day1_challenge.md)
 
----
-
-* [Untitled](untitled-1.md)
-
 ## Case Study
 
 * [Untitled](case-study/untitled-1.md)
@@ -38,4 +34,8 @@
 * [Product\_Feature\_Idea](case-study/product_feature_idea.md)
 * [Device User Discrepancy](case-study/case-study_2.md)
 * [Invalid High School](case-study/fb-case-study.md)
+
+## SQL
+
+* [Advanced SQL Problems](sql/advanced-sql-problems.md)
 
