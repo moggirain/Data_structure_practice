@@ -182,9 +182,40 @@ SELECT *,
 ) AS sub
 GROUP BY idx
 ORDER BY idx
-
-# 
 ```
 
+### MOVING AVERAGE
 
+### [Restaurant Growth ](https://leetcode-cn.com/problems/restaurant-growth/)
+
+SQL default - Unbounded ROWS X PROCEEDING AND CURRENT ROW
+
+```sql
+# Solution1: Window Function 
+
+# STEP1: create a grouped table by date
+# |visited_on | customer_id | sum(amount) 
+# STEP2: aggregate function to calculate sum amount and moving average 
+# | visited_on | sum_amount | mv_avg_on_sum
+# STEP3: eliminate first 7 days (create a rank above)
+
+WITH tmp AS (
+SELECT visited_on, 
+       SUM(amount) as sum_amount  
+FROM Customer 
+GROUP BY 1
+ORDER BY 1)
+
+SELECT visited_on, amount, ROUND(average_amount,2) as average_amount
+FROM (
+    SELECT visited_on, 
+    SUM(sum_amount) OVER (ORDER BY visited_on ROWS 6 preceding) AS amount, 
+    AVG(sum_amount) OVER (ORDER BY visited_on ROWS 6 preceding) AS average_amount,    ROW_NUMBER() OVER (ORDER BY visited_on) AS rk 
+    FROM tmp 
+    ORDER BY 1 ) tmp2
+WHERE tmp2.rk >= 7
+
+# Solution2: Self-join 
+
+```
 
