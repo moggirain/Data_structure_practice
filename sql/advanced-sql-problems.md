@@ -216,6 +216,18 @@ FROM (
 WHERE tmp2.rk >= 7
 
 # Solution2: Self-join 
+# get the distinct date 
+# join the table with 6 day difference 
+# between 0 and 6 
+
+SELECT c2.visited_on, 
+       SUM(c1.amount) as amount, 
+       ROUND(SUM(c1.amount) / 7,2) AS average_amount 
+FROM Customer c1 
+JOIN (SELECT DISTINCT visited_on FROM Customer) c2
+ON DATEDIFF(c2.visited_on, c1.visited_on) BETWEEN 0 AND 6 
+WHERE c2.visited_on >= (SELECT MIN(visited_on) FROM Customer) + 6
+GROUP BY 1
 
 ```
 
