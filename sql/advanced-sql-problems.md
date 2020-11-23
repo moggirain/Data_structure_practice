@@ -210,7 +210,8 @@ SELECT visited_on, amount, ROUND(average_amount,2) as average_amount
 FROM (
     SELECT visited_on, 
     SUM(sum_amount) OVER (ORDER BY visited_on ROWS 6 preceding) AS amount, 
-    AVG(sum_amount) OVER (ORDER BY visited_on ROWS 6 preceding) AS average_amount,    ROW_NUMBER() OVER (ORDER BY visited_on) AS rk 
+    AVG(sum_amount) OVER (ORDER BY visited_on ROWS 6 preceding) AS average_amount,    
+    ROW_NUMBER() OVER (ORDER BY visited_on) AS rk 
     FROM tmp 
     ORDER BY 1 ) tmp2
 WHERE tmp2.rk >= 7
@@ -230,4 +231,68 @@ WHERE c2.visited_on >= (SELECT MIN(visited_on) FROM Customer) + 6
 GROUP BY 1
 
 ```
+
+
+
+```sql
+date       | sign_ups |
+|------------|----------|
+| 2018-01-01 | 10 |
+| 2018-01-02 | 20 |
+| 2018-01-03 | 50 |
+| ... | ... |
+| 2018-10-01 | 35 |
+
+# diplay 1: 
+date_interval | avg_sign_ups 
+01-07              X
+01-15              X
+
+# display2:
+date_interval | avg_sign_ups 
+01-01              X
+01-07              X
+
+# depends on how the date was displayed
+# you might consider how the self join work 
+# solution1: 
+
+SELECT 
+	date, 
+	7day_moving_avg
+FROM 
+	(SELECT date,  
+	AVG(sign_ups) OVER(ORDER BY date 6 ROW PROCEEDING) AS 7day_moving_avg, 
+	ROW_NUMBER() OVER(ORDER BY date) as rk 
+	FROM signups 
+	ORDER BY 1 )tmp
+WHERE tmp.rk >= 7; 
+
+# solution2: 
+
+SELECT date, 
+	   7day_moving_avg
+FROM (
+SELECT 
+	b.date, 
+	AVG(a.sign_ups) as 7day_moving_avg
+FROM signups a 
+JOIN signups b 
+ON DATEDIFF(a.date, b.date) BETWEEN 0 and 6 
+) tmp 
+WHERE b.date >= (SELECT MIN(date) FROM signups) + 6 
+GROUP BY 1 
+
+# disaply 2: 
+SELECT 
+	a.date, 
+	AVG(b.sign_ups) as 7day_moving_avg
+FROM signups a 
+JOIN signups b 
+ON a.date <= b.date + INTERVAL "6 days" 
+AND a.date >= b.date # only display the first day 
+GROUP BY 1 
+```
+
+
 
