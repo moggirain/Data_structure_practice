@@ -294,5 +294,7 @@ AND a.date >= b.date # only display the first day
 GROUP BY 1 
 ```
 
+```sql
 
+```
 

@@ -35,8 +35,9 @@
 * [Device User Discrepancy](case-study/case-study_2.md)
 * [Invalid High School](case-study/fb-case-study.md)
 
-## SQL
+## Fun-SQL <a id="sql"></a>
 
+* [Do not make it complicated-SQL](sql/do-not-make-it-complicated-sql.md)
 * [Advanced SQL Problems](sql/advanced-sql-problems.md)
 
 ## Stats and Probability
