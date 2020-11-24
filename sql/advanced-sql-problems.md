@@ -349,6 +349,31 @@ columns	  | type
 user_id	  | integer
 body	    | text
 created_at| datetime
+
+# Do we consider those who never make any comments after join?
+# When join users if the user_id is null, then the user never comment 
+# STEP 1: find user and comment_count within given time range
+# |user_id | comment_counts
+# STEP2: make histogram based on comment
+# |comment_counts | frequency| 
+
+WITH hist AS (
+    SELECT c.user_id, 
+           COUNT(
+```
+
+### Random Sample 
+
+Let's say we have a table with an _id_ and _name_ field. The table holds over 100 million rows and we want to sample a random row in the table without throttling the database.
+
+Write a query to randomly sample a row from this table.
+
+```sql
+big_table`
+
+column	type
+id	int
+name	varchar
 ```
 
 
