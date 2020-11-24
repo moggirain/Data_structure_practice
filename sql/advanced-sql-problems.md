@@ -232,7 +232,7 @@ GROUP BY 1
 
 ```
 
-
+### Sign up Rolling 
 
 ```sql
 date       | sign_ups |
@@ -294,7 +294,39 @@ AND a.date >= b.date # only display the first day
 GROUP BY 1 
 ```
 
-```sql
+### Histogram 
 
+```sql
+Table: Sessions
+| session_id | length_seconds |
+|------------|----------------|
+|     1      |  23            |
+|     2      | 453            |
+|     3      | 27             |
+| .. | .. |
+
+Table: output 
+
+| bucket  | count |
+|---------|-------|
+| 20-25   | 2     |
+| 450-455 | 1     |
+
+# first step: create bins for each session 
+# second step: bucket the bins by calculating the sessions in each bin 
+# GROUP By bin_label 
+
+WITH bucket_bin AS (
+	SELECT session_id, 
+		   FLOOR(length_second / 5) as bin_label
+	FROM Sessions )
+
+SELECT CONCATNTE(STR(bin_label * 5), "-", STR(bin_label*5+5)) AS bucket, 
+	   COUNT(DISTINCT session_id) AS count 
+FROM bucket_bin
+GROUP BY bin_label 
+ORDER BY 1 
 ```
+
+
 
