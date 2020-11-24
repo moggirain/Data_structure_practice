@@ -43,6 +43,7 @@ tid | pid | ts
 
 # items could be purchase either before, between and after 
 # item purchased either before or between do not work 
+# Solution1: 
 # STEP1: Find the product that is purchased in between the xmas and NYD
 WITH holiday_transactions AS(
        SELECT DISTINCT pid 
@@ -56,5 +57,14 @@ FROM Products p
 LEFT JOIN holiday_transactions
 USING(pid)
 WHERE pid is NULL; 
+
+
+# solution2: Subquery 
+ SELECT pid, name
+ FROM Products p 
+ WHERE pid 
+ NOT IN (SELECT pid 
+         FROM tmp) 
+ ORDER BY 1  
 ```
 
