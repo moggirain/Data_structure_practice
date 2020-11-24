@@ -30,5 +30,10 @@ WHERE ranking = 3
 
 #### Q2. Write a test query to validate the data in the resulting table. Indicate what you would expect the query to return if the data were valid.
 
+```sql
+# From Q1, we can calculate how many people complete the 3rd trips. 
+# 
+```
+
 
 
