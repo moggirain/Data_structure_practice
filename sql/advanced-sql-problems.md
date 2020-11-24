@@ -294,7 +294,7 @@ AND a.date >= b.date # only display the first day
 GROUP BY 1 
 ```
 
-### Histogram 
+### Session Histogram 
 
 ```sql
 Table: Sessions
@@ -326,6 +326,29 @@ SELECT CONCATNTE(STR(bin_label * 5), "-", STR(bin_label*5+5)) AS bucket,
 FROM bucket_bin
 GROUP BY bin_label 
 ORDER BY 1 
+```
+
+### Comment Histogram 
+
+Write a SQL query to create a histogram of number of comments per user in the month of January 2020. Assume bin buckets class intervals of one.
+
+```sql
+Table: users 
+
+columns      | 	type
+------------------
+id	         | integer
+name	       | string
+created_at   | 	datetime
+neighborhood_id | 	integer
+mail	       | string
+
+Table: Comments 
+columns	  | type
+------------------
+user_id	  | integer
+body	    | text
+created_at| datetime
 ```
 
 
