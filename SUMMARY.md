@@ -37,6 +37,7 @@
 
 ## Fun-SQL <a id="sql"></a>
 
+* [Users & Trips](sql/users-and-trips.md)
 * [Friendship Series](sql/friendship-series.md)
 * [Do not make it complicated-SQL](sql/do-not-make-it-complicated-sql.md)
 * [Advanced SQL Problems](sql/advanced-sql-problems.md)
