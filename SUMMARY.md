@@ -37,6 +37,7 @@
 
 ## Fun-SQL <a id="sql"></a>
 
+* [Fraud-Event](sql/fraud-event.md)
 * [Users & Trips](sql/users-and-trips.md)
 * [Friendship Series](sql/friendship-series.md)
 * [Do not make it complicated-SQL](sql/do-not-make-it-complicated-sql.md)
