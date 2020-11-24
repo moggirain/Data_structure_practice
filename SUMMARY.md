@@ -37,6 +37,7 @@
 
 ## Fun-SQL <a id="sql"></a>
 
+* [Pivot Table](sql/pivot-table.md)
 * [Fraud-Event](sql/fraud-event.md)
 * [Users & Trips](sql/users-and-trips.md)
 * [Friendship Series](sql/friendship-series.md)
