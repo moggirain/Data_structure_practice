@@ -32,7 +32,15 @@ WHERE ranking = 3
 
 ```sql
 # From Q1, we can calculate how many people complete the 3rd trips. 
-# 
+# check if the Q1 count match how we count the people 
+SELECT COUNT(*) as rider_num3
+FROM Q1
+
+SELECT COUNT(rider_id) as rider_count
+FROM trip_info 
+WHERE trip_status = 'completed'
+GROUP BY rider_id 
+HAVING COUNT(trip_id) >= 3 
 ```
 
 
