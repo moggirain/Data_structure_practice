@@ -43,5 +43,75 @@ GROUP BY rider_id
 HAVING COUNT(trip_id) >= 3 
 ```
 
+### Trips & Drivers
+
+#### Q1. Write a query that can show Top three drivers who have the highest balance today. 
+
+```sql
+Table: drivers 
+datestr     | country_name | city_name | driver_uuid | balance 
+"2020-11-26"
+# output driver_uuid 
+SELECT TOP 3 driver_uuid, 
+       balance  
+FROM drivers 
+WHERE date = CURDATE()
+ORDER BY 2 DESC;  
+
+# solution 2: 
+SELECT driver_uuid, 
+       balance 
+FROM drivers 
+WHERE datestr = CURDATE()
+ORDER BY 2 DESC 
+LIMIT 3; 
+```
+
+####  Q2. Which city in Brazil has the most drivers in October? 
+
+```sql
+# output city_name | cnt_drivers
+SELECT city_name, 
+       COUNT(DISTINCT driver_uuid) as cnt_driver
+FROM drivers 
+WHERE country_name = 'Brazil'
+AND MONTH(datestr) = 10
+GROUP BY 1 
+ORDER BY 2 DESC 
+LIMIT 1; 
+
+# solution2: 
+
+SELECT TOP 1 city_name, 
+       COUNT(DISTINCT driver_uuid) as cnt_driver
+FROM drivers 
+WHERE country_name = 'Brazil'
+AND MONTH(datestr) = 10
+GROUP BY 1 
+ORDER BY 2 DESC; 
+```
+
+**Q3. Write a query that can list city names based on the rank of the number of drivers in countries in October.**
+
+```sql
+# output: country_name | city_name | cnt_drivers
+"Example
+
+Mexico, Mexico City, 1 
+Mexico, Zacatecas, 2 
+…
+…
+…
+Brazil, Brasilia, 1 
+Brazil, Sao Paulo, 2 "
+
+SELECT country_name,
+       city_name, 
+       ROW_NUMBER() OVER(PARTITION BY country_name ORDER BY COUNT(DISTINCT driver_uuid) DESC) as ranking       
+FROM drivers 
+WHERE MONTH(datestr) = 10
+ORDER BY 3 DESC; 
+```
+
 
 

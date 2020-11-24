@@ -1,5 +1,11 @@
 # Advanced SQL Problems
 
+{% hint style="info" %}
+More for the pivot table, see JC's summary. Super helpful! 
+
+[https://www.notion.so/Workshop-Pivot-tables-in-SQL-2436f98188314556b31fe3955d14d250](https://www.notion.so/Workshop-Pivot-tables-in-SQL-2436f98188314556b31fe3955d14d250)
+{% endhint %}
+
 ## Customer Retention Problem 
 
 ```text
