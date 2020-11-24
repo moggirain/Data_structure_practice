@@ -133,7 +133,7 @@ Table: Stduent
 # Step 1: Add one id for fixed column that can be used to join or combine two tables
 | America | Asia | Europe |
 |---------|------|--------|
-ID=1| Jack    | Xi   | Pascal |
+ID=1 | Jack    | Xi   | Pascal |
 ID=2 | Jane    |      |        |
 # Step 2 Filter each column 
 # Step 3 Join and select feature 
@@ -358,8 +358,19 @@ created_at| datetime
 # |comment_counts | frequency| 
 
 WITH hist AS (
-    SELECT c.user_id, 
-           COUNT(
+    SELECT u.id as user 
+           COUNT(IFNULL(c.user_id,0)) as comments_count
+    FROM users u 
+    LEFT JOIN Comments c 
+    ON u.id = c.user_id 
+    WHERE LEFT(c.created_at, 7) = "2020-01"
+    GROUP BY 1 ) 
+
+SELECT comments_count, 
+       COUNT(user) as frequency 
+FROM hist 
+GROUP BY 1 
+ORDER BY 1;  
 ```
 
 ### Random Sample 
