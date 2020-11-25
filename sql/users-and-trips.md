@@ -113,5 +113,7 @@ WHERE MONTH(datestr) = 10
 ORDER BY 3 DESC; 
 ```
 
-
+```sql
+1.要求得到每个大陆trip最多的城市，2.每天每个司机过去50天的平均trip，第二问我写了个self join， 被追问了更好的方法，就说可能可以window function avg函数具体没有用过，然后面试官就说可以用preceding放在partition by里面
+```
 
