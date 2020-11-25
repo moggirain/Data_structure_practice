@@ -302,6 +302,10 @@ GROUP BY 1
 
 ### Session Histogram 
 
+Question:Write a query to count the number of sessions that fall into bands of size 5, i.e. for the above snippet, produce something akin to the output. 
+
+Get complete credit for the proper string labels \(“5-10”, etc.\) but near complete credit for something that is communicable as the bin.
+
 ```sql
 Table: Sessions
 | session_id | length_seconds |

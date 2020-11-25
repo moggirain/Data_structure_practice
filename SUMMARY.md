@@ -37,6 +37,7 @@
 
 ## Fun-SQL <a id="sql"></a>
 
+* [Median](sql/median.md)
 * [Pivot Table](sql/pivot-table.md)
 * [Fraud-Event](sql/fraud-event.md)
 * [Users & Trips](sql/users-and-trips.md)
