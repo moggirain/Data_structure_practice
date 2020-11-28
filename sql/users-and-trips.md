@@ -287,3 +287,47 @@ AND DATE_TRUNC('MONTH', t.request_at) = 10
 GROUP BY 1; 
 ```
 
+#### Q3. In City \#8, how many unique, currently unbanned clients requested a trip between  9/10/2013 and 9/20/2013, with drivers who started between 9/1/2013  and 9/10/2013 and are currently banned, that was eventually completed?
+
+```sql
+Table: trips
+id(int)| client_id | driver_id | city_id | client_rating | driver_rating | request_device | status    |  predicted_eta   | actual_eta | request_at 
+1           2           4          55         4.5              4.7            "android"    "completed"     14                 20       2019-11-03 11:34:45
+Table: users
+user_id |      email        | firstname | lastname | role     | banned | creationtime
+2        standley@gmail.com    Standley    Green    "client"     No      2018-04-05 11:34:45
+# output: cnt_clients
+# Step1:filter drivers who started between the certain time range
+# Step2: Find clients request trip with drivers in the time range 
+# Step3: Count the unique clients
+
+WITH driver_tables AS (
+SELECT u.user_id as banned_drivers 
+FROM users u 
+JOIN trips p 
+ON t.driver_id = u.user_id 
+WHERE u.role = 'driver'
+AND u.banned = 'YES'
+AND DATE_TRUNC('DAY', u.creationtime) BETWEEN '2013-09-01 00:00:00' AND 
+'2013-09-10 00:00:00') 
+
+SELECT COUNT(DISTINCT t.client_id) as client_cnt
+FROM 
+(
+SELECT t.client_id
+FROM trips p 
+JOIN users u
+ON t.client_id = u.user_id 
+WHERE u.role = 'client'
+AND u.banned = 'no'
+AND DATE_TRUNC('DAY', t.request_at) BETWEEN '2013-09-01 00:00:00' AND 
+'2013-09-10 00:00:00' 
+AND t.status = 'completed'  
+AND t.driver_id IN 
+    (SELECT banned_drivers
+     FROm driver_table)      
+) t 
+```
+
+
+
