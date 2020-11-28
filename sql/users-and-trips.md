@@ -177,12 +177,15 @@ FROM trip_info
 ORDER BY 1   
 ```
 
-#### Q6. Find average trips for treatment and control group respectively. 
+#### Q6. EXPERIMENT: Find average trips for treatment and control group respectively. 
 
 ```sql
 Table: trip 
-user_id | trip_id |  trip_date  | ggroup
-1           2      "2019-01-09"   "control"
+user_id | trip_id |  trip_date  | 
+1           2      "2019-01-09"   
+Table: users
+user_id | ggroup
+1         'control'
 
 # output: ggroup | avg_trip
 # step1: user_id | trip_cnt 
@@ -192,22 +195,26 @@ user_id | trip_id |  trip_date  | ggroup
 SELECT ggroup as group_name,
        SUM(trip_cnt) / COUNT(DISTINCT user_id) as avg_trip
 FROM (
-SELECT user_id, 
-       COUNT(trip_id) as trip_cnt, 
-       ggroup as assigned_group
-FROM trip 
-WHERE ggroup = "control"
+SELECT t.user_id, 
+       COUNT(t.trip_id) as trip_cnt, 
+       u.ggroup as assigned_group
+FROM trip t
+LEFT JOIN users u
+USING(user_id)
+WHERE u.ggroup = "control"
 GROUP BY 1 ) t1; 
 
 SELECT ggroup as group_name,
        SUM(trip_cnt) / COUNT(DISTINCT user_id) as avg_trip
 FROM (
-SELECT user_id, 
-       COUNT(trip_id) as trip_cnt, 
-       ggroup as assigned_group
-FROM trip 
-WHERE ggroup = "test"
-GROUP BY 1 ) t2
+SELECT t.user_id, 
+       COUNT(t.trip_id) as trip_cnt, 
+       u.ggroup as assigned_group
+FROM trip t
+LEFT JOIN users u
+USING(user_id)
+WHERE u.ggroup = "test"
+GROUP BY 1) t2
 ```
 
 ### Assume a PostgreSQL database, and server timezone is UTC. 
