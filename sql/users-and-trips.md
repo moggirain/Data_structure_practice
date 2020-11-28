@@ -150,7 +150,32 @@ GROUP BY 1 ) t
 WHERE t.rk = 1 
 ```
 
-**Q5. Find Every driver's average trip in the past 50 days.** 
+**Q5. Find every driver's average trip in the past 50 days.** 
+
+```sql
+Table: trip_info 
+ rider_id  | trip_id | begintrip_timestamp_utc | trip_status
+      1        1          2019-02-04 11:04:23    "completed"
+      2        3          2019-02-05 10:11:33    "not completed"
+
+# output: rider_id | avg_trip
+# datediff(cur_date, begintrip) <= 50 
+# step1: rider_id | date | cnt_trips rider's daily tripcount
+# step2: rider_id | avg_trips
+
+WITH t1 AS(
+SELECT rider_id, 
+       begintrip_timestamp_utc,
+       COUNT(trip_id) as trip_count
+FROM trip_info 
+WHERE trip_status = 'completed'
+GROUP BY 1, 2)
+SELECT rider_id, 
+       AVG(trip_count) OVER(PARTITION BY rider_id 
+       ORDER BY begintrip_timestamp_utc 49 ROWS PRECEDING) as avg_trip
+FROM trip_info 
+ORDER BY 1   
+```
 
 ```sql
 2.每天每个司机过去50天的平均trip，第二问我写了个self join， 被追问了更好的方法，就说可能可以window function avg函数具体没有用过，然后面试官就说可以用preceding放在partition by里面
