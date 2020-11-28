@@ -113,12 +113,48 @@ WHERE MONTH(datestr) = 10
 ORDER BY 3 DESC; 
 ```
 
-```sql
-1.要求得到每个大陆trip最多的城市，2.每天每个司机过去50天的平均trip，第二问我写了个self join， 被追问了更好的方法，就说可能可以window function avg函数具体没有用过，然后面试官就说可以用preceding放在partition by里面
-```
+**Q4. Query the city with most trip for each country** 
 
 ```sql
-5. sql test，这个开始看，很简单，我还上来就写了，后来乱了-死掉了
+Table: drivers 
+datestr | country_name | city_name | rider_id | balance 
+
+Table: trip_info 
+ rider_id  | trip_id | begintrip_timestamp_utc | trip_status
+      1        1          2019-02-04 11:04:23    "completed"
+      2        3          2019-02-05 10:11:33    "not completed"
+
+# output country_name | city_name | cnt_trips
+
+# Step1: rider_id | rk_trip_cnt
+# Step2: country_name | city_name |ranking
+# Step3: find the top 
+
+WITH tmp AS(
+SELECT rider_id, 
+       COUNT(trip_id) as cnt_trip
+FROM trip_info 
+WHERE trip_status = 'completed'
+GROUP BY 1 ) 
+
+SELECT country_name, 
+       city_name
+FROM (
+SELECT country_name, 
+       city_name,
+       RANK() OVER(PARTITION BY country_name ORDER BY cnt_trip DESC) as rk  
+FROM drivers d 
+LEFT JOIN tmp 
+Using (rider_id)
+GROUP BY 1 ) t 
+WHERE t.rk = 1 
+```
+
+**Q5.** 
+
+```sql
+要求得到每个大陆trip最多的城市，2.每天每个司机过去50天的平均trip，第二问我写了个self join， 被追问了更好的方法，就说可能可以window function avg函数具体没有用过，然后面试官就说可以用preceding放在partition by里面
+
 一个user table 有user_id 和 treatment or control （只有在experiment中的user才会在这个table里
 
 一个trip table 有user_id, trip_id, trip date (有全部user)
