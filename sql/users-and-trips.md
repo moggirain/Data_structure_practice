@@ -210,5 +210,48 @@ WHERE ggroup = "test"
 GROUP BY 1 ) t2
 ```
 
+### Assume a PostgreSQL database, and server timezone is UTC. 
 
+```sql
+Table: trips
+id(int)| client_id | driver_id | city_id | client_rating | driver_rating | request_device | status    |  predicted_eta   | actual_eta | request_at 
+1           2           4          55         4.5              4.7            "android"    "completed"     14                 20       2019-11-03 11:34:45
+Table: users
+user_id |      email        | firstname | lastname | role     | banned | creationtime
+2        standley@gmail.com    Standley    Green    "client"     No      2018-04-05 11:34:45
+```
+
+#### Q1. For request times between 12/1/2013 10:00:00 PST & 12/8/2013 17:00:00 PST, how many completed trips \(Hint: look at the trips.status column\) were requested on iphones in City\#5? And how many on android phones?
+
+```sql
+# output: city | request_trip_cnt 
+# only need trips table 
+
+SELECT city_id, 
+       COUNT(id) as trip_cnt 
+FROM trips 
+WHERE request_at BETWEEN "12/1/2013 10:00:00 PST" 
+AND "12/8/2013 17:00:00 PST"
+AND status = 'completed'
+AND city_id = 5 
+AND request_divice = 'iphones'
+GROUP BY 1; 
+
+
+SELECT city_id, 
+       COUNT(id) as trip_cnt 
+FROM trips 
+WHERE request_at BETWEEN "12/1/2013 10:00:00 PST" 
+AND "12/8/2013 17:00:00 PST"
+AND status = 'completed'
+AND city_id = 5 
+AND request_divice = 'android'
+GROUP BY 1; 
+```
+
+#### Q2. In City \#8, how many unique, currently unbanned clients requested a trip in October  2013 that was eventually completed? Of these, how many trips did  each client take?
+
+```sql
+SELECT 
+```
 
