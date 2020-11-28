@@ -249,9 +249,41 @@ AND request_divice = 'android'
 GROUP BY 1; 
 ```
 
-#### Q2. In City \#8, how many unique, currently unbanned clients requested a trip in October  2013 that was eventually completed? Of these, how many trips did  each client take?
+#### Q2. In City \#8, how many unique, currently unbanned clients requested a trip in October  2013 that was eventually completed? Of these, how many trips did each client take?
 
 ```sql
-SELECT 
+Table: trips
+id(int)| client_id | driver_id | city_id | client_rating | driver_rating | request_device | status    |  predicted_eta   | actual_eta | request_at 
+1           2           4          55         4.5              4.7            "android"    "completed"     14                 20       2019-11-03 11:34:45
+Table: users
+user_id |      email        | firstname | lastname | role     | banned | creationtime
+2        standley@gmail.com    Standley    Green    "client"     No      2018-04-05 11:34:45
+# ouput1: city | unbanned_users_cnt 
+# output2: user_id | trip_cnt 
+# STEP1: join two tables 
+# STEP2: filter city, request_time, status 
+# STEP3: count(trip_id)
+
+SELECT t.city, 
+       COUNT(DISTINCT u.user_id) as unbanned_user_cnt
+FROM users u 
+LEFT JOIN trips t 
+ON t.client_id = u.user_id 
+WHERE t.city = 8 AND u.banned = 'NO'
+AND t.status = 'completed'
+AND DATE_TRUNC('YEAR', t.request_at) = 2013
+AND DATE_TRUNC('MONTH', t.request_at) = 10
+GROUP BY 1; 
+
+SELECT u.user_id,
+       COUNT(IFNULL(t.trip_id, 'Null') as trip_cnt 
+FROM FROM users u 
+LEFT JOIN trips t 
+ON t.client_id = u.user_id 
+WHERE t.city = 8 AND u.banned = 'NO'
+AND t.status = 'completed'
+AND DATE_TRUNC('YEAR', t.request_at) = 2013
+AND DATE_TRUNC('MONTH', t.request_at) = 10
+GROUP BY 1; 
 ```
 
