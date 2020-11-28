@@ -177,13 +177,37 @@ FROM trip_info
 ORDER BY 1   
 ```
 
+#### Q6. Find average trips for treatment and control group respectively. 
+
 ```sql
-2.每天每个司机过去50天的平均trip，第二问我写了个self join， 被追问了更好的方法，就说可能可以window function avg函数具体没有用过，然后面试官就说可以用preceding放在partition by里面
+Table: trip 
+user_id | trip_id |  trip_date  | ggroup
+1           2      "2019-01-09"   "control"
 
-一个user table 有user_id 和 treatment or control （只有在experiment中的user才会在这个table里
+# output: ggroup | avg_trip
+# step1: user_id | trip_cnt 
+# step2: ggroup | avg_trip
 
-一个trip table 有user_id, trip_id, trip date (有全部user)
-问题：average trips for treatment and control group respectively
+
+SELECT ggroup as group_name,
+       SUM(trip_cnt) / COUNT(DISTINCT user_id) as avg_trip
+FROM (
+SELECT user_id, 
+       COUNT(trip_id) as trip_cnt, 
+       ggroup as assigned_group
+FROM trip 
+WHERE ggroup = "control"
+GROUP BY 1 ) t1; 
+
+SELECT ggroup as group_name,
+       SUM(trip_cnt) / COUNT(DISTINCT user_id) as avg_trip
+FROM (
+SELECT user_id, 
+       COUNT(trip_id) as trip_cnt, 
+       ggroup as assigned_group
+FROM trip 
+WHERE ggroup = "test"
+GROUP BY 1 ) t2
 ```
 
 
