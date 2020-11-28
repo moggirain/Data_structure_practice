@@ -150,10 +150,10 @@ GROUP BY 1 ) t
 WHERE t.rk = 1 
 ```
 
-**Q5.** 
+**Q5. Find Every driver's average trip in the past 50 days.** 
 
 ```sql
-要求得到每个大陆trip最多的城市，2.每天每个司机过去50天的平均trip，第二问我写了个self join， 被追问了更好的方法，就说可能可以window function avg函数具体没有用过，然后面试官就说可以用preceding放在partition by里面
+2.每天每个司机过去50天的平均trip，第二问我写了个self join， 被追问了更好的方法，就说可能可以window function avg函数具体没有用过，然后面试官就说可以用preceding放在partition by里面
 
 一个user table 有user_id 和 treatment or control （只有在experiment中的user才会在这个table里
 
