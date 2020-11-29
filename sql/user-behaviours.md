@@ -91,7 +91,30 @@ Table: user_country
 Table: Composer 
 userid | event (enter/post/cancel) | date 
 #Q1. What is the post success rate for each day in the last week? 
+
+select date, ifnull(num_post*1.0/num_enter, 0) as post_ratio
+         from
+         ((select date, count(user_id) as num_post
+         from composer
+         where datediff(day, date, current_date) <= 7 and event = 'post'
+         group by date) t_post -- count how many posts are there
+         join
+         (select date, count(user_id) as num_enter
+         from composer
+         where datediff(day, date, current_date) <= 7 and event = 'enter'
+         group by date) t_enter -- count how many times user started entering text
+         on t_post.date = t_enter.date) temp
+         order
+s active user and date = current_date
+        group by country) temp;
+        
+Q2.Average post by daily active users by country today?
+
+2. Product Sense
+蛮简单的，问的是上面（2）中的metric - average number of post per daily active user 突然从3下降到2.5，有哪些可能的原因，并且解释每个原因。好像还问了个问题，是怎么样确定一个新的change是好是坏之类的，有哪些metric可以帮助measure。
 ```
 
+Q1.Success post rate each day for the past 7 days? Select ifnull\(sum\(case when event=’post’ then 1 else 0 end\)/sum\(case when event=’enter’ then 1 else 0 end\),0\) as rate From composer Where timestampdiff\(day, date, curdate\)&lt;=7 Group by date
 
+Q2.Average post by daily active users by country today? Select country, ifnull\(sum\(case when event=’post’ then 1 else 0 end\)/count\(distinct c.user\_id\),0\) as avg\_post From composer c right join user u On c.user\_id= u.user\_id and c.date = u.date Where dau=1 and date=curdate\(\) Group by country
 
