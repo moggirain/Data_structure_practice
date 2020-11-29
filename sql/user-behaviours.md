@@ -54,3 +54,25 @@ AND timestampdiff('second', timestamp(t2.date, t2.time), timestamp(t1.date, t1.t
 AND timestampdiff('second', timestamp(t2.date, t2.time), timestamp(t2.date, b.time)) >= 0
 ```
 
+
+
+```sql
+success代表发送好友请求是否通过，1为通过，0为没通过。
+Table: user_network_requests
+| userid   | timestamp   | data_center | success |
+--------------------------------------------------
+| 10032    | 15009       | A           | 1       |
+| 10032    | 15097       | C           | 0       |
+| ...      | ...         | ...         | ...     |
+
+
+Table: user_country
+| userid   | country |
+----------------------
+| 10032    | US      | 
+| ...      | ...     |
+1.求每个data center，request fail的比率。
+2.求每个国家，request fail的比率。
+3.求每个国家，有多少个user发出的好友请求从来没有fail过。
+```
+
