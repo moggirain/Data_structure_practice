@@ -105,7 +105,7 @@ GROUP BY 1
 #### Q3. Find for each country, how many users send friend request without failing. 
 
 ```sql
-
+# output: country | 
 ```
 
 ### Composer
