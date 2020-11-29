@@ -180,7 +180,59 @@ Table: confirmation (users confirmed their phone number)
 (User can only confirm during the same day FB sent the confirmation message)
 ```
 
-#### Q1. 
+#### Q1. How many confirmation texts by country yesterday?
+
+```sql
+# output: country | confirmation_text_cnt 
+# clarifying questions: if it matters whether the user confirmed or not? or it is just about the content of the text as confirmation?
+# Assume it is only about the message content 
+# Step1: filter type = confirmation, date = yesterday 
+# Step2: Group it by country, and count the message 
+
+SELECT country, 
+       COUNT(*) as confirmation_text_cnt
+FROM sms_message 
+WHERE type = 'confirmation'
+AND DATEDIFF(CURDATE(), date)= 1  
+GROUP BY 1
+ORDER BY 2 DESC; # check if it is necessary
+```
+
+**Q2. What are the number of users who received notification every single day during the last 7 days?**
+
+```sql
+# output: cnt_users 
+# STEP1: filter the user received notification,
+# filter the date in teh last 7 days
+# STEP2: group by cell number, date, having count(distinct date) >= 7 
 
 
+SELECT date, 
+       COUNT(DISTINCT cell_number) as cnt_users
+FROM (
+SELECT cell_number, 
+       date
+FROM sms_message 
+WHERE type = 'notification'
+AND DATEDIFF(CURDATE() - date) <= 7 
+GROUP BY 1
+HAVING COUNT(DISTINCT date) = 7) tmp 
+GROUP BY 1 
+```
+
+**Q3. What is the confirmation rate in the past 30 days?**
+
+```sql
+Table: sms_message(fb to users)
+| date      | country | cell_numer | carrier | type
+|2018-12-06 | US      | xxxxxxxxxx | verizon | confirmation (ask user to confirm) 
+|2018-12-05 | UK      | xxxxxxxxxx | t-mobile| notification
+
+Table: confirmation (users confirmed their phone number)
+|date | cell_number |
+(User can only confirm during the same day FB sent the confirmation message)
+# output: confirmation rate = users who confirmed / all users received confirmation
+# step1: join two tables (message left join user)
+# step2: 
+```
 
