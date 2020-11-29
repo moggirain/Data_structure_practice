@@ -232,7 +232,31 @@ Table: confirmation (users confirmed their phone number)
 |date | cell_number |
 (User can only confirm during the same day FB sent the confirmation message)
 # output: confirmation rate = users who confirmed / all users received confirmation
-# step1: join two tables (message left join user)
-# step2: 
+# date | confirmation_rate
+# step1: filter all who received cofirmation from sms_message
+# |date | cell_number| 
+# step2: join two tables, non-confirmed users will have null cell_number 
+# |date1|date2|cell_number1|cell_number2|
+# step3: do the calculation 
+
+WITH tmp AS (
+SELECT date, 
+       cell_number
+FROM sms_message 
+WHERE type = 'confirmation'
+AND DATEDIFF(CURDATE() - date) <= 30 ), 
+tmp2 AS (
+SELECT tmp.date as date1
+       tmp.cell_number as number1,
+       c.date as date2, 
+       d.cell_number as number2
+FROM tmp
+LEFT JOIN confirmation c 
+ON USING(date, cell_number))
+
+SELECT date1 as date, 
+       ROUND(IFNULL((100 * SUM(IF(number2, 1, 0)) / COUNT(number1)), 0),2) as confirmation_rate 
+FROM tmp2
+GROUP BY 1; 
 ```
 
