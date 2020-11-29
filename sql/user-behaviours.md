@@ -76,23 +76,37 @@ Table: user_country
 #### Q1. Find for each data center, the ratio of the request fail. 
 
 ```sql
+# Does the unique user matter here?
 # output: date_center | ratio_failrequest
 # user_network
 # group by data_center,sum()
 
 SELECT data_center, 
-       SUM(if success = 0, 1, 0) / COUNT(*) as request_ratio
-FROM user_network 
+       SUM(IF(success = 0, 1, 0)) / COUNT(*) as request_ratio
+FROM user_network_requests 
 GROUP BY 1; 
 ```
 
 #### Q2. Find for each country, the ratio of the request fail. 
 
 ```sql
+# output: country |ratio_failrequest
+# step1: network join user_country 
+# step2: group by country, calculate ratio
 
+SELECT t2.country, 
+       SUM(IF(success = 0, 1, 0)) / COUNT(*) as request_fail
+FROM user_network_requests t1 
+LEFT JOIN user_country t2
+USING (user_id)
+GROUP BY 1 
 ```
 
 #### Q3. Find for each country, how many users send friend request without failing. 
+
+```sql
+
+```
 
 ### Composer
 
