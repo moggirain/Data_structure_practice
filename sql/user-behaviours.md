@@ -73,11 +73,25 @@ Table: user_country
 | ...      | ...     |
 ```
 
-
+#### Q1. Find for each data center, the ratio of the request fail. 
 
 ```sql
 1.求每个data center，request fail的比率。
 2.求每个国家，request fail的比率。
 3.求每个国家，有多少个user发出的好友请求从来没有fail过。
 ```
+
+#### Q2. Find for each country, the ratio of the request fail. 
+
+#### Q3. Find for each country, how many users send friend request without failing. 
+
+### Composer
+
+```sql
+Table: Composer 
+userid | event (enter/post/cancel) | date 
+#Q1. What is the post success rate for each day in the last week? 
+```
+
+
 
