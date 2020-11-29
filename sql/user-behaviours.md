@@ -1,6 +1,6 @@
 # User behaviours
 
-### Communication Frequency 
+### Message 
 
 #### Q1. Find proportion of people who communicating to 5+ people each day? 
 
