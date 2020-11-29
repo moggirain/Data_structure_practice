@@ -130,3 +130,5 @@ Select ifnull\(sum\(case when event=’post’ then 1 else 0 end\)/sum\(case whe
 
 Select country, ifnull\(sum\(case when event=’post’ then 1 else 0 end\)/count\(distinct c.user\_id\),0\) as avg\_post From composer c right join user u On c.user\_id= u.user\_id and c.date = u.date Where dau=1 and date=curdate\(\) Group by country
 
+
+
