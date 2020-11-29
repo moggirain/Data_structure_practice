@@ -133,7 +133,8 @@ Table: Composer
 userid | event (enter/post/cancel) | date 
 2           post                     2020-10-23
 Table: User
-
+userid| date       | country | dau_flag{0,1} 
+2       2020-10-23    USA         1
 ```
 
 #### Q1.  What is the post success rate for each day in the last week? 
@@ -152,11 +153,21 @@ GROUP BY 1;
 #### Q2. What is the average post by daily active users by country today? 
 
 ```sql
+# output: country | avg_post_cnt 
+# STEP1: LEFT JOIN two tables by userid, date dau post
+# STEP2: calculate dau post 
 
-# output: country | 
+SELECT u.country, 
+       ROUND(IFNULL(SUM(IF(c.event = 'post',1, 0)) / COUNT(DISTINCT u.user_id),0),2) as avg_post
+FROM User u 
+LEFT JOIN Composer c 
+       ON u.date = c.date AND u.userid = c.userid 
+WHERE u.date = CURDATE()
+       AND u. dau_falg = 1
+GROUP BY 1;
 ```
 
-Select country, ifnull\(sum\(case when event=’post’ then 1 else 0 end\)/count\(distinct c.user\_id\),0\) as avg\_post From composer c right join user u On c.user\_id= u.user\_id and c.date = u.date Where dau=1 and date=curdate\(\) Group by country
+
 
 
 
