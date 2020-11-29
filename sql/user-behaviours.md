@@ -31,7 +31,7 @@ FROM t2
 GROUP BY 1  
 ```
 
-#### **Q2. Find fraction of people who respond within 60s**
+#### **Q2. \*\*Find fraction of people who respond within 60s**
 
 ```sql
 Table: interaction
@@ -40,16 +40,17 @@ Table: interaction
 # all messages are responded within 60s？
 # or average respond time within 60s?
 # or at least one message responsed within 60s?
-# if all messages are responded within 60s 
+# if at least one message
 # output: distinct_user_responded_all_within60s / all user
 # step1: find user pairs and self join table 
 # step2: filter those timestamp diff within 60second 
 # step3: count distinct 
 
-SELECT date, 
-       timestamp, 
-       sender, 
-       receiver 
-FROM 
+SELECT COUNT(DISTINCT t2.receiver) / 
+       COUNT(SELECT DISTINCT t2.receiver FROM interaction) as fraction
+FROM interaction t1, interaction t2 
+WHERE t1.sender = t2.receiver AND t1.receiver = t2.sender
+AND timestampdiff('second', timestamp(t2.date, t2.time), timestamp(t1.date, t1.time))<= 60
+AND timestampdiff('second', timestamp(t2.date, t2.time), timestamp(t2.date, b.time)) >= 0
 ```
 
