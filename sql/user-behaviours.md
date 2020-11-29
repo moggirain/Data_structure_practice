@@ -2,7 +2,7 @@
 
 ### Message 
 
-#### Q1. Find proportion of people who communicating to 5+ people each day? 
+#### Q1. Find fraction of people who communicating to 5+ people each day? 
 
 ```sql
 Table: interaction
@@ -26,7 +26,7 @@ FROM t1
 GROUP BY 1, 2) 
 
 SELECT date, 
-       SUM(IF message_cnt >=5, 1, 0) / COUNT(user) as proportion
+       ROUND((SUM(IF message_cnt >=5, 1, 0) / COUNT(user)), 2) as proportion
 FROM t2 
 GROUP BY 1  
 ```
@@ -170,8 +170,17 @@ GROUP BY 1;
 ### Message
 
 ```sql
-Table: date | timestamp | send_id | receive_id
+Table: sms_message(fb to users)
+| date      | country | cell_numer | carrier | type
+|2018-12-06 | US      | xxxxxxxxxx | verizon | confirmation (ask user to confirm) 
+|2018-12-05 | UK      | xxxxxxxxxx | t-mobile| notification
+
+Table: confirmation (users confirmed their phone number)
+|date | cell_number |
+(User can only confirm during the same day FB sent the confirmation message)
 ```
+
+#### Q1. 
 
 
 
