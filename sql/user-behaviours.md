@@ -105,7 +105,25 @@ GROUP BY 1
 #### Q3. Find for each country, how many users send friend request without failing. 
 
 ```sql
-# output: country | 
+# output: country | cnt_user_success 
+# Step1: distinct users only get success request 
+# Step2: join user_country, group by country 
+
+WITH tmp AS (
+SELECT DISTINCT user_id as users     
+FROM user_network_requests
+WHERE success = 1 
+AND user_id NOT IN (
+    SELECT distinct user_id
+    FROM user_netowrk_requests
+    WHERE success = 0 )) 
+
+SELECT t2.country, 
+       COUNT(tmp.users) as cnt_user_success
+FROM tmp 
+JOIN user_country t2
+ON tmp.users = t2.user_id 
+GROUP BY 1;   
 ```
 
 ### Composer
