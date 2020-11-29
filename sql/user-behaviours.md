@@ -167,7 +167,11 @@ WHERE u.date = CURDATE()
 GROUP BY 1;
 ```
 
+### Message
 
+```sql
+Table: date | timestamp | send_id | receive_id
+```
 
 
 
