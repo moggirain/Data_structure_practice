@@ -76,12 +76,21 @@ Table: user_country
 #### Q1. Find for each data center, the ratio of the request fail. 
 
 ```sql
-1.求每个data center，request fail的比率。
-2.求每个国家，request fail的比率。
-3.求每个国家，有多少个user发出的好友请求从来没有fail过。
+# output: date_center | ratio_failrequest
+# user_network
+# group by data_center,sum()
+
+SELECT data_center, 
+       SUM(if success = 0, 1, 0) / COUNT(*) as request_ratio
+FROM user_network 
+GROUP BY 1; 
 ```
 
 #### Q2. Find for each country, the ratio of the request fail. 
+
+```sql
+
+```
 
 #### Q3. Find for each country, how many users send friend request without failing. 
 
