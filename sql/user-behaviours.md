@@ -258,5 +258,19 @@ SELECT date1 as date,
        ROUND(IFNULL((100 * SUM(IF(number2, 1, 0)) / COUNT(number1)), 0),2) as confirmation_rate 
 FROM tmp2
 GROUP BY 1; 
+
+
+SELECT
+T1.date, ROUND(IFNULL(num_confirmations/num_send, 0), 2) AS confirmation_rate FROM
+(SELECT date, COUNT(*) AS num_confimations FROM confirmation
+WHERE DATEDIFF(CURDATE(), date) <= 30 GROUP BY 1;
+) T1
+JOIN
+(SELECT date, SUM(CASE WHEN type = ‘confirmation’ THEN 1 ELSE 0 END) AS
+num_send
+FROM sms_message
+WHERE DATEDIFF(CURDATE(), date) <= 30 GROUP BY 1
+) T2
+ON T1.date = T2.date GROUP BY 1;
 ```
 
