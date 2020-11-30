@@ -45,13 +45,38 @@ Imagine you are the product manager of Facebook News Feed and have to instruct y
   *  \#impressions or \# of clicks ---&gt; for two features---&gt; **THE AVERAGE revenue gained from all ad in certain period of time** 
 * **How to test?**
   * **Set an A/B testing** 
+  * **Setting Hypothesis \(Launch A or B or not launch\)**
+    * **If need to consider A B or null, then we need to design two pair of test: A vs null, and B vs null.** 
+      * **Test two hypothesis**
+        * H01: Avg/total revenue from feature A has no difference from the null group  \(one-tail\)
+        * H11: Avg/total revenue from feature A is greater than  from the null group 
+        * H02: Avg/total revenue from feature B has no difference from the null group  \(one-tail\)
+        * H12: Avg/total revenue from feature B is greater than  from the null group 
   * **Experiment setting** 
     * Unit of diversion: user 
     * Unit of analysis: ads 
-    * Sample: Randomized samples from 
-* **What data do we have?**
-* **What are the trade-off?**
-* \*\*\*\*
+    * Sample: Randomized samples - Block
+      * Consider the least segment for randomization given the cost and time for A/B testing 
+        * Users: old / new 
+        * Region
+        * Age 
+        * active time \(morning, afternoon, night\)
+    * **\*\*Size** 
+      * Calculate n: statistical power, significance level \(alpha\), practical significance level \(effect size\), confidence level
+    * Duration of experiment
+      * Check with the engineer and data scientist on the daily volume of the users --&gt; check how much volume we can to reach the sample size
+* **Result interpretation**
+  * If feature A &gt; control, feature B &gt; control
+    * Launch A vs B test \(check the significance\)
+    * **\(What if the difference in revenue lift is minimal between the two features? How sure are you that this small difference is not just due to randomness?\)** 
+    * **If any weight between two features? By decision rules:** only feature B bring at least X more dollars than the feature A, we will decide launch it, otherwise, no bother. 
+  * If feature A &gt; control, feature B &lt; control, verse versa
+    * Launch A or Launch B 
+  * If feature &lt; control, feature &lt; control
+    * Not launch any feature or further experiment  
+* **Summary**
+
+![](../.gitbook/assets/image%20%281%29.png)
 
 
 
