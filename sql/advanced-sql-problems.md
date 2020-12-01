@@ -119,76 +119,7 @@ WHERE Active_last_month = 1
 GROUP BY 1; 
 ```
 
-### Pivot Table 
 
-[**618. Students Report By Geography**](https://leetcode.com/problems/students-report-by-geography/)
-
-```sql
-Table: Stduent
-| name   | continent |
-|--------|-----------|
-| Jack   | America   |
-| Pascal | Europe    |
-| Xi     | Asia      |
-| Jane   | America   |
-```
-
-**Pivot the continent column in this table so that each name is sorted alphabetically and displayed underneath its corresponding continent. The output headers should be America, Asia and Europe respectively. It is guaranteed that the student number from America is no less than either Asia or Europe.**
-
-```sql
-# Step 1: Add one id for fixed column that can be used to join or combine two tables
-| America | Asia | Europe |
-|---------|------|--------|
-ID=1 | Jack    | Xi   | Pascal |
-ID=2 | Jane    |      |        |
-# Step 2 Filter each column 
-# Step 3 Join and select feature 
-```
-
-```sql
-# Solution1: 
-SELECT America, Aisa, Europe 
-FROM 
-(SELECT 
-	ROW_NUMBER() OVER(ORDER BY name) as id, 
-	name as America, 
-FROM Students
-WHERE continuent = “America”) a
-LEFT JOIN 
-(SELECT 
-	ROW_NUMBER() OVER(ORDER BY name) as id, 
-	name as Asia, 
-FROM Students
-WHERE continuent = “Asia”) b 
-ON a.id = b.id )b 
-LEFT JOIN 
-(SELECT 
-	ROW_NUMBER() OVER(ORDER BY name) as id, 
-	name as Europe, 
-FROM Students
-WHERE continuent = “Europe”) c 
-ON a.id = c.id 
-```
-
-```sql
-# Solution2: Window function 
-# Predified columns / create new one that can be used as index
-# Partition by (column) + order by column (row) as idx
-# GROUP BY idx 
-# Aggregation function (pick the string versus null)
-
-SELECT 
-    MAX(CASE WHEN continent = 'America' THEN name END) AS America,
-    MAX(CASE WHEN continent = 'Asia' THEN name) END AS Asia,
-    MAX(CASE WHEN continent= 'Europe' THEN name) END AS Europe
-FROM (
-SELECT *,
-    ROW_NUMBER() OVER (PARTITION BY continent ORDER BY name) as idx
-    FROM student 
-) AS sub
-GROUP BY idx
-ORDER BY idx
-```
 
 ### MOVING AVERAGE
 
