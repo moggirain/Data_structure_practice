@@ -26,6 +26,7 @@
 
 ## Case Study
 
+* [Prioritize Product Feature](case-study/prioritize-product-feature.md)
 * [Causes for drop](case-study/untitled-1.md)
 * [Different User behaviour](case-study/different-user-behaviour.md)
 * [Likes Increase](case-study/likes-increase.md)
