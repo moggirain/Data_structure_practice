@@ -37,6 +37,7 @@
 
 ## Fun-SQL <a id="sql"></a>
 
+* [Expenditure](sql/expenditure.md)
 * [Travel Problem](sql/travel-problem.md)
 * [User behaviours](sql/user-behaviours.md)
 * [Median](sql/median.md)
