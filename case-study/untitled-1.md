@@ -23,16 +23,21 @@ description: Metrics
     * **External-Product / Competitor effect** users shift to other features or other products 
   * To diagnose which one is the cause, I will start by asking the questions to check if we really need to care about the effect.  
     * **Context: Should we care about the drop?** 
-      * One-time drop or consistent drop?
+      * **Frequency:** One-time drop or consistent drop?
         * If one-time event 
           * Technical glitches 
           * system down service 
         * If consistent
           * Dive into it 
-      * Is this drop happens only for this week or month, or seasonally? Holiday issue? Seasonality issue?
+      * **Duration:**Is this drop happens only for this week or month, or seasonally? 
         * Seasonally
           * Holiday season issue
-          * Post-Promotion or special event 
+          * Post-promotion or special event 
+      * **Region:** Did the drop only happen in one region? 
+        * If one region
+          * Policy regulation 
+          * Market competitor 
+            * If that is the case, we need some ethnographic analysis to understand the market and develop the feature targeted at their needs. 
 * Is this drop regional or cross all area?
 * * **Context**
   * Internal
