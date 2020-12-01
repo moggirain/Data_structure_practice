@@ -38,6 +38,11 @@ description: Metrics
           * Policy regulation 
           * Market competitor 
             * If that is the case, we need some ethnographic analysis to understand the market and develop the feature targeted at their needs. 
+      * **Platform:** Did the drop only happen in particular platform, like IOS, android, or other?
+        * If happen in one particular platform
+          * compare the engagement between platforms
+          * Potential UI/UX or the user experience in certain platform is different?
+      * **Across features:** Did the drop only happen in particular platform, like IOS, android, or other?
 * Is this drop regional or cross all area?
 * * **Context**
   * Internal
