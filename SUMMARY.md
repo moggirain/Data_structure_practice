@@ -37,6 +37,7 @@
 
 ## Fun-SQL <a id="sql"></a>
 
+* [Travel Problem](sql/travel-problem.md)
 * [User behaviours](sql/user-behaviours.md)
 * [Median](sql/median.md)
 * [Pivot Table](sql/pivot-table.md)
