@@ -26,7 +26,7 @@
 
 ## Case Study
 
-* [Metric drop](case-study/untitled-1.md)
+* [Causes for drop](case-study/untitled-1.md)
 * [Different User behaviour](case-study/different-user-behaviour.md)
 * [Likes Increase](case-study/likes-increase.md)
 * [Double Ads](case-study/untitled.md)
