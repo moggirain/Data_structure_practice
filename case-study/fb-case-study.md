@@ -6,6 +6,16 @@ description: Health
 
 ###  **How many high schools that people have listed on their profiles are real? How do we find out, and deploy at scale, a way of finding invalid schools?**
 
+**Clarifying questions:** 
+
+**1\) What is the goal for finding the unreal high school profiles?** 
+
+**2\) Why high school?** 
+
+**3\) What is the success metrics?**
+
+**4\)What is the current infrastructure or system to identify those fake accounts?** 
+
 * **Question: translate to if people list fake high schools**
   * If yes, what is the purpose of listing the fake high schools?
     * Possibility1: Protect the privacy information 
