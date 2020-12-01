@@ -1,25 +1,20 @@
 # Expenditure
 
-**Problem 2:**
-
 **Your boss knows that you're a good programmer and that you're responsible, so she's given you a big task - to check the company's expenditure automatically. You're given the table expenditure\_plan, which describes all the planned expenditures, and the table allowable\_expenditure, which describes the amount that can be spent in certain time periods.**
 
 **The expenditure\_plan table contains the following columns:**
 
-* **monday\_date - the unique date of the Monday of the corresponding week;**
-* **expenditure\_sum - the sum of the planned expenditure for the corresponding week. All dates in this table fall in the same year.**
+* monday\_date - the unique date of the Monday of the corresponding week;
+* expenditure\_sum - the sum of the planned expenditure for the corresponding week. All dates in this table fall in the same year.
 
 **The allowable\_expenditure table contains the following columns:**
 
-* **id - the unique ID of the limitation;**
-* **left\_bound - the unique left bound of the time period, represented by the number of the week \(1-based\);**
-* **right\_bound - the unique right bound of the time period, represented by the number of the week \(1-based\);**
-* **value - the allowable sum that can be spent during the given left and right bounds, inclusive. The segments of the time periods don't intersect with one other. The weeks are numbered sequentially from the first week. Week 1 is the first full week of the year, meaning that its Monday is part of the current year.**
+* id - the unique ID of the limitation;
+* left\_bound - the unique left bound of the time period, represented by the number of the week \(1-based\);
+* right\_bound - the unique right bound of the time period, represented by the number of the week \(1-based\);
+* value - the allowable sum that can be spent during the given left and right bounds, inclusive. The segments of the time periods don't intersect with one other. The weeks are numbered sequentially from the first week. Week 1 is the first full week of the year, meaning that its Monday is part of the current year.
 
 **Your task is to write a select statement which returns the columns id and loss, where the value of loss is either 0 \(if the expenditure limit with this id was not exceeded\) or the amount of money by which the planned expenditure exceeded the allowable expenditure, sorted by id.**
-
-  
-
 
 ![Table: Expenditure\_plan ](../.gitbook/assets/screen-shot-2020-12-01-at-1.56.21-pm.png)
 
